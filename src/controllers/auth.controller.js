@@ -5,7 +5,7 @@ import env from "../config/env.js";
 
 export async function register(req, res) {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password } = req.body || {};
 
     if (!username) {
       return res.status(400).json({
