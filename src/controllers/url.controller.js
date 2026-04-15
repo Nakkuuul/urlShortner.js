@@ -4,15 +4,7 @@ import env from "../config/env.js";
 
 export async function shortenURL(req, res) {
   try {
-    const token = req.headers.authorization;
     const { shortCode, originalUrl, expiry = null } = req.body || {};
-
-    if (!token || !token.startsWith("Bearer ")) {
-      return res.status(401).json({
-        success: false,
-        message: "Unauthorized",
-      });
-    }
 
     if (!originalUrl) {
       return res.status(400).json({
