@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const PORT = process.env.PORT;
+const MONGOOSE_URI = process.env.MONGOOSE_URI;
 
 if (!PORT) {
   throw new Error("PORT is not available in .env");
