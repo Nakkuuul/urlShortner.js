@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Snip — URL Shortener</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- AUTH SCREEN -->
+  <div id="auth-screen" class="screen active">
+    <div class="auth-left">
+      <div class="brand">snip<span class="dot">.</span></div>
+      <p class="tagline">Shorten. Share.<br/>Track every click.</p>
+      <div class="deco-lines">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="auth-right">
+      <div class="auth-box">
+        <div class="tab-bar">
+          <button class="tab active" data-tab="login">Login</button>
+          <button class="tab" data-tab="register">Register</button>
+        </div>
+
+        <!-- LOGIN -->
+        <div id="login-form" class="form-panel active">
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="login-email" placeholder="you@example.com"/>
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" id="login-password" placeholder="••••••••"/>
+          </div>
+          <div id="login-error" class="form-error hidden"></div>
+          <button class="btn-primary" id="login-btn">Login</button>
+        </div>
+
+        <!-- REGISTER -->
+        <div id="register-form" class="form-panel">
+          <div class="field">
+            <label>Username</label>
+            <input type="text" id="reg-username" placeholder="nakul"/>
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="reg-email" placeholder="you@example.com"/>
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" id="reg-password" placeholder="••••••••"/>
+          </div>
+          <div id="register-error" class="form-error hidden"></div>
+          <button class="btn-primary" id="register-btn">Create Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD SCREEN -->
+  <div id="dashboard-screen" class="screen">
+    <header>
+      <div class="brand">snip<span class="dot">.</span></div>
+      <div class="user-bar">
+        <span id="header-username"></span>
+        <button class="btn-ghost" id="logout-btn">Logout</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- SHORTEN FORM -->
+      <section class="shorten-section">
+        <h1>Shorten a URL</h1>
+        <div class="shorten-card">
+          <div class="field">
+            <label>Original URL <span class="req">*</span></label>
+            <input type="url" id="original-url" placeholder="https://very-long-url.com/path/to/something"/>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Custom code <span class="opt">(optional)</span></label>
+              <input type="text" id="custom-code" placeholder="my-link"/>
+            </div>
+            <div class="field">
+              <label>Expires on <span class="opt">(optional)</span></label>
+              <input type="datetime-local" id="expiry"/>
+            </div>
+          </div>
+          <div id="shorten-error" class="form-error hidden"></div>
+          <button class="btn-primary" id="shorten-btn">
+            <span>Shorten</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- RESULT -->
+        <div id="result-box" class="result-box hidden">
+          <div class="result-label">Your short URL</div>
+          <div class="result-row">
+            <a id="short-url-link" href="#" target="_blank"></a>
+            <button class="btn-copy" id="copy-btn" title="Copy">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <div class="result-original">↳ <span id="result-original-url"></span></div>
+        </div>
+      </section>
+
+      <!-- HISTORY -->
+      <section class="history-section">
+        <div class="history-header">
+          <h2>Recent Links</h2>
+          <span id="history-count" class="count-badge"></span>
+        </div>
+        <div id="history-list" class="history-list">
+          <div class="empty-state">No links yet. Shorten one above.</div>
+        </div>
+        <button class="btn-ghost-sm" id="clear-history-btn">Clear history</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
