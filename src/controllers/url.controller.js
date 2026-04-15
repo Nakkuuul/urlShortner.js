@@ -59,7 +59,44 @@ export async function shortenURL(req, res) {
     return res.status(500).json({
       success: false,
       message: "Internal Server Error",
-      error: error.message
+    });
+  }
+}
+
+export async function redirect(req, res) {
+  try {
+    const { shortCode } = req.params;
+
+    if (!shortCode) {
+      return res.status(400).json({
+        success: false,
+        message: "Short Code is required",
+      });
+    }
+
+    const url = await urlModel.findOne({ shortCode });
+
+    if (!url) {
+      return res.status(404).json({
+        success: false,
+        message: "Short Code not found",
+      });
+    }
+
+    if (url.expiresAt && url.expiresAt < new Date()) {
+      return res.status(410).json({
+        success: false,
+        message: "Link has expired",
+      });
+    }
+
+    await urlModel.updateOne({ shortCode }, { $inc: { clicks: 1 } });
+
+    return res.redirect(url.originalUrl);
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
     });
   }
 }
