@@ -30,14 +30,14 @@ urlShortner/
 │   ├── routes/
 │   │   ├── auth.routes.js
 │   │   └── url.routes.js
-│   └── app.js
-├── urlshortner-frontend/
+│   ├── app.js
+|   ├── server.js
+|   ├── .env
+|   └── package.json
+frontend/
 │   ├── index.html
 │   ├── css/style.css
 │   └── js/app.js
-├── server.js
-├── .env
-└── package.json
 ```
 
 ---
