@@ -21,5 +21,5 @@ if (!JWT_SECRET) {
 export default {
   PORT,
   MONGOOSE_URI,
-  JWT_SECRET
+  JWT_SECRET,
 };

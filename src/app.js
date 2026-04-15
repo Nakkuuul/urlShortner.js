@@ -1,6 +1,6 @@
-import express, { json } from 'express';
-import morgan from 'morgan';
-import authRouter from './routes/auth.routes.js';
+import express from "express";
+import morgan from "morgan";
+import authRouter from "./routes/auth.routes.js";
 
 const app = express();
 
