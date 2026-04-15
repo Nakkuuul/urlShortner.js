@@ -4,6 +4,7 @@ import cors from "cors";
 
 import authRouter from "./routes/auth.routes.js";
 import urlRouter from "./routes/url.routes.js";
+import { redirect } from "./controllers/url.controller.js";
 
 const app = express();
 
@@ -13,5 +14,6 @@ app.use(cors());
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/url", urlRouter);
+app.get("/:shortCode", redirect);
 
 export default app;
